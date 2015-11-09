@@ -12,6 +12,14 @@ class UserTest < ActiveSupport::TestCase
   end
   
 #-----------------------------------
+#------------other tests------------
+#----------------------------------- 
+  
+  test "authenticated? should return false for a user with nil digest" do
+    assert_not @user.authenticated?('')
+  end
+  
+#-----------------------------------
 #-------------name tests------------
 #-----------------------------------  
   
@@ -68,7 +76,7 @@ class UserTest < ActiveSupport::TestCase
 #-----------password tests----------
 #-----------------------------------  
   
-  test "password should be present (nonblank)" do
+  test "password should be present (non-blank)" do
     password = @user.password_confirmation = " " * 6
     assert_not @user.valid?
   end
